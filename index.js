@@ -13,7 +13,7 @@ const pass=process.env.DB_PASS
 
 
 
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const uri = `mongodb+srv://${user}:${pass}@cluster0.uctmuu5.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
@@ -45,6 +45,7 @@ async function run() {
   
       app.post('/carts', async (req, res) => {
         const cartItem = req.body;
+        console.log(cartItem)
         const result = await cartCollection.insertOne(cartItem);
         res.send(result);
       });
